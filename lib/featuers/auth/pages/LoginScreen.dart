@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/widgets/custom_password_field.dart';
 import '../../../core/widgets/custom_text_field.dart';
-import '../../explore/pages/HomeScreen.dart';
 import '../../main/MainAppScreen.dart';
 import 'ForgetPasswordScreen.dart';
 import 'SignUpScreen.dart';
@@ -192,7 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
           24,
           12,
           24,
-          12 + bottomInset, // 👈 lifts above keyboard
+          12 + bottomInset, // lifts above keyboard
         ),
         child: SizedBox(
           height: 50,

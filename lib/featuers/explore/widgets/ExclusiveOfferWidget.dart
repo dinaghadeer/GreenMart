@@ -4,7 +4,7 @@ import 'package:greenmart/featuers/home/models/product_model.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/textStyles.dart';
-import 'ProcuctCard.dart';
+import 'ProcuctCardHome.dart';
 
 class ExclusiveOfferWidget extends StatelessWidget {
   const ExclusiveOfferWidget({
@@ -38,7 +38,7 @@ class ExclusiveOfferWidget extends StatelessWidget {
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return ProductCard(model:products[index]);
+              return ProductCardHome(model:products[index]);
             },
             separatorBuilder: (context, index) {
               return SizedBox(width: 16);

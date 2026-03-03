@@ -4,7 +4,7 @@ import 'package:greenmart/featuers/home/models/product_model.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/textStyles.dart';
-import 'ProcuctCard.dart';
+import 'ProcuctCardHome.dart';
 
 class BestSellingBuilder extends StatelessWidget {
   const BestSellingBuilder({super.key,});
@@ -43,7 +43,7 @@ class BestSellingBuilder extends StatelessWidget {
           ),
 
            itemBuilder: (context, index) {
-             return ProductCard(model: products[index]);
+             return ProductCardHome(model: products[index]);
            },
            itemCount: products.length,
        )

@@ -11,7 +11,6 @@ class SearchScreen extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          // App Bar
           Container(
             height: 70,
             alignment: Alignment.center,

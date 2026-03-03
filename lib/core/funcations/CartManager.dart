@@ -1,4 +1,4 @@
-import '../../featuers/home/models/category_product_model.dart';
+import '../../featuers/home/models/product_model.dart';
 
 class CartManager {
   static final Map<ProductModel, int> _cartItems = {};
@@ -15,6 +15,11 @@ class CartManager {
     }
   }
 
+  /// Add a product multiple times (for your ProductDetailsScreen)
+  static void addMultiple(ProductModel product, int quantity) {
+    add(product, quantity: quantity);
+  }
+
   /// Add multiple products at once
   static void addAll(List<ProductModel> products) {
     for (var product in products) {
@@ -22,7 +27,7 @@ class CartManager {
     }
   }
 
-  /// Remove a product completely
+  /// Remove a product
   static void remove(ProductModel product) {
     _cartItems.remove(product);
   }
@@ -38,15 +43,14 @@ class CartManager {
   }
 
   /// Clear the entire cart
-  static void clear() {
-    _cartItems.clear();
-  }
+  static void clear() => _cartItems.clear();
 
   /// Get total number of items
   static int get totalItems =>
       _cartItems.values.fold(0, (previous, quantity) => previous + quantity);
 
   /// Get total price
-  static double get totalPrice => _cartItems.entries
-      .fold(0, (previous, entry) => previous + entry.key.price * entry.value);
+  static double get totalPrice =>
+      _cartItems.entries
+          .fold(0, (previous, entry) => previous + entry.key.price * entry.value);
 }

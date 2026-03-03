@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/funcations/CartManager.dart';
 import '../../../core/utils/colors.dart';
-import '../../home/models/category_product_model.dart';
+import '../widgets/CheckoutSheet.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -169,9 +169,11 @@ class _CartScreenState extends State<CartScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                     ),
                     onPressed: () {
-                      // Navigate to checkout screen
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Proceed to checkout')),
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const CheckoutSheet(),
                       );
                     },
                     child: const Text('Checkout', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: AppColors.whiteColor)),

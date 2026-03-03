@@ -4,8 +4,8 @@ import 'package:greenmart/core/utils/colors.dart';
 import 'package:greenmart/featuers/explore/pages/HomeScreen.dart';
 
 import '../Cart/page/CartScreen.dart';
+import '../Profile/AccountScreen.dart';
 import '../explore/pages/FavoritesScreen.dart';
-import '../explore/pages/ProfileScreen.dart';
 import '../explore/pages/SearchScreen.dart';
 
 class MainAppScreen extends StatefulWidget {
@@ -32,7 +32,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
         case 3:
           return const FavoritesScreen();
         case 4:
-          return const ProfileScreen();
+          return const AccountScreen();
         default:
           return const HomeScreen();
       }

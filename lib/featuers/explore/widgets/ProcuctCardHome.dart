@@ -1,47 +1,43 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../../../core/funcations/CartManager.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/textStyles.dart';
 import '../../home/models/product_model.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.model});
+class ProductCardHome extends StatelessWidget {
+  const ProductCardHome({super.key, required this.model});
   final ProductModel model;
-
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-         child: Container(
-               width: 170,
-               padding: const EdgeInsets.all(14),
-               decoration: BoxDecoration(
+      child: Container(
+        width: 170,
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
             color: AppColors.borderColor,
             width: 1,
           ),
-               ),
-               child: Column(
+        ),
+        child: Column(
           children: [
             Expanded(
               child: Image.asset(model.image),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                ),
                 Text(
                   model.name,
                   style: TextStyles.bodyStyle(
                     weight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(
                   "7pcs",
                   style: TextStyles.smallStyle(
@@ -50,33 +46,44 @@ class ProductCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               children: [
                 Text(
-                  "\$12.00",
+                  "\$${model.price.toStringAsFixed(2)}",
                   style: TextStyles.bodyStyle(
                     weight: FontWeight.w600,
                     color: AppColors.primaryColor,
                   ),
                 ),
-                Spacer(),
-                Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(17),
-                  ),
-                  child: Icon(
-                    Icons.add,
-                    color: AppColors.whiteColor,
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    CartManager.add(model);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("${model.name} added to cart"),
+                        duration: const Duration(seconds: 1),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.circular(17),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColors.whiteColor,
+                    ),
                   ),
                 ),
               ],
             ),
           ],
-               ),
-             ),
-       );
+        ),
+      ),
+    );
   }
 }

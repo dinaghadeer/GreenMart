@@ -13,10 +13,9 @@ class OnBoardingScreen extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          /// 🔥 Full screen background image
           Image.asset("assets/images/onboarding.png", fit: BoxFit.cover),
 
-          /// 🔥 Dark gradient overlay
+          /// Dark gradient overlay
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -27,7 +26,6 @@ class OnBoardingScreen extends StatelessWidget {
             ),
           ),
 
-          /// 🔥 Content
           Positioned.fill(
             child: Column(
               children: [

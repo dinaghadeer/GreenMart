@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../home/models/category_product_model.dart';
+import '../../../core/funcations/CartManager.dart';
+import '../../../core/utils/colors.dart';
+import '../../home/models/product_model.dart';
 import '../pages/ProductDetailsScreen.dart';
 
 class ProductCard extends StatelessWidget {
@@ -25,6 +27,7 @@ class ProductCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: Colors.grey.shade300, width: 1),
         ),
         padding: const EdgeInsets.all(12),
         child: Column(
@@ -43,8 +46,8 @@ class ProductCard extends StatelessWidget {
             ),
             Text(
               product.size,
-              style: const TextStyle(
-                color: Colors.grey,
+              style: TextStyle(
+                color: Colors.grey.shade600,
                 fontSize: 12,
               ),
             ),
@@ -53,19 +56,27 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$${product.price}",
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold),
+                  "\$${product.price.toStringAsFixed(2)}",
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
-                    size: 20,
+                InkWell(
+                  onTap: () {
+                    CartManager.add(product);
+
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("${product.name} added to cart"),
+                        duration: const Duration(seconds: 1),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryColor,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: const Icon(Icons.add, color: Colors.white, size: 17),
                   ),
                 ),
               ],

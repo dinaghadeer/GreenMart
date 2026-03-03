@@ -157,7 +157,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           24,
           12,
           24,
-          12 + bottomInset, // 👈 lifts above keyboard
+          12 + bottomInset, // lifts above keyboard
         ),
         child: SizedBox(
           height: 50,

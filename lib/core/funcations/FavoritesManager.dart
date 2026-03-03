@@ -1,4 +1,4 @@
-import '../../featuers/home/models/category_product_model.dart';
+import '../../featuers/home/models/product_model.dart';
 
 class FavoritesManager {
   static final List<ProductModel> _favorites = [];

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../core/funcations/CartManager.dart';
 import '../../../core/funcations/FavoritesManager.dart';
 import '../../../core/utils/colors.dart';
-import '../../home/models/category_product_model.dart';
 import 'ProductDetailsScreen.dart';
 
 
@@ -70,7 +69,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             ),
           ),
 
-          // Add All to Cart button
           Padding(
             padding: const EdgeInsets.all(16),
             child: SizedBox(
@@ -83,7 +81,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 ),
                 onPressed: () {
                   // add all favorite products to cart
-                  CartManager.addAll(favorites); // assuming you have a CartManager
+                  CartManager.addAll(favorites);
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('All favorites added to cart!')),
                   );
