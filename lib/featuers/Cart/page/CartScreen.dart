@@ -52,7 +52,7 @@ class _CartScreenState extends State<CartScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Product image
-                      Image.asset(
+                      Image.network(
                         product.image,
                         width: 60,
                         height: 60,
@@ -65,9 +65,9 @@ class _CartScreenState extends State<CartScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(product.name, style: const TextStyle(fontWeight: FontWeight.w600)),
+                            Text(product.title, style: const TextStyle(fontWeight: FontWeight.w600)),
                             const SizedBox(height: 4),
-                            Text(product.size, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                            Text(product.title, style: const TextStyle(color: Colors.grey, fontSize: 12)),
                             const SizedBox(height: 8),
 
                             // Quantity controls

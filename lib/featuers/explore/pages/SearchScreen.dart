@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/utils/colors.dart';
-import '../../home/models/category_model.dart';
+import '../../models/category_model.dart';
 import 'CagegoryDetailsScreen.dart';
 
 class SearchScreen extends StatelessWidget {

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import '../../../core/funcations/CartManager.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/textStyles.dart';
-import '../../home/models/product_model.dart';
+import '../../models/procucts.dart';
+import '../../models/product_model.dart';
 
 class ProductCardHome extends StatelessWidget {
   const ProductCardHome({super.key, required this.model});
-  final ProductModel model;
+  final Products model;
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +26,14 @@ class ProductCardHome extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Image.asset(model.image),
+              child: Image.network(model.image),
             ),
             const SizedBox(height: 25),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  model.name,
+                  model.title,
                   style: TextStyles.bodyStyle(
                     weight: FontWeight.w600,
                   ),
@@ -62,7 +63,7 @@ class ProductCardHome extends StatelessWidget {
                     CartManager.add(model);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text("${model.name} added to cart"),
+                        content: Text("${model.title} added to cart"),
                         duration: const Duration(seconds: 1),
                       ),
                     );

@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:greenmart/featuers/home/models/product_model.dart';
+import 'package:greenmart/featuers/models/product_model.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/textStyles.dart';
+import '../../models/procucts.dart';
 import 'ProcuctCardHome.dart';
 
 class BestSellingBuilder extends StatelessWidget {
-  const BestSellingBuilder({super.key,});
+  final List<Products>products;
+  const BestSellingBuilder({super.key, required this.products});
 
   @override
   Widget build(BuildContext context) {

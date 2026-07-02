@@ -15,7 +15,7 @@ class ProductModel {
     required this.price,
   });
 }
-List <ProductModel> products = [
+List <ProductModel> productsModel = [
   ProductModel(
     id: '1',
     name: "Red Apple",

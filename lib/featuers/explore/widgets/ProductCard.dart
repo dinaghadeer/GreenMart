@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../../core/funcations/CartManager.dart';
 import '../../../core/utils/colors.dart';
-import '../../home/models/product_model.dart';
+import '../../models/procucts.dart';
+import '../../models/product_model.dart';
 import '../pages/ProductDetailsScreen.dart';
 
 class ProductCard extends StatelessWidget {
-  final ProductModel product;
+  final Products product;
 
   const ProductCard({
     super.key,
@@ -34,23 +35,24 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Image.asset(
+              child: Image.network(
                 product.image,
                 height: 80,
+                fit: BoxFit.contain,
               ),
             ),
             const SizedBox(height: 10),
             Text(
-              product.name,
+              product.title,
               style: const TextStyle(fontWeight: FontWeight.w600),
             ),
-            Text(
-              product.size,
-              style: TextStyle(
-                color: Colors.grey.shade600,
-                fontSize: 12,
-              ),
-            ),
+            // Text(
+            //   product.size,
+            //   style: TextStyle(
+            //     color: Colors.grey.shade600,
+            //     fontSize: 12,
+            //   ),
+            // ),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -65,7 +67,7 @@ class ProductCard extends StatelessWidget {
 
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text("${product.name} added to cart"),
+                        content: Text("${product.title} added to cart"),
                         duration: const Duration(seconds: 1),
                       ),
                     );

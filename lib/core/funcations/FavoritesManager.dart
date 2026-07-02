@@ -1,15 +1,16 @@
-import '../../featuers/home/models/product_model.dart';
+import '../../featuers/models/procucts.dart';
+import '../../featuers/models/product_model.dart';
 
 class FavoritesManager {
-  static final List<ProductModel> _favorites = [];
+  static final List<Products> _favorites = [];
 
-  static List<ProductModel> get favorites => _favorites;
+  static List<Products> get favorites => _favorites;
 
-  static void add(ProductModel product) {
+  static void add(Products product) {
     if (!_favorites.contains(product)) _favorites.add(product);
   }
 
-  static void remove(ProductModel product) {
+  static void remove(Products product) {
     _favorites.remove(product);
   }
 }

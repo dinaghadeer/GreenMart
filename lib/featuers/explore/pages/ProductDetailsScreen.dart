@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/funcations/CartManager.dart';
-import '../../../core/funcations/FavoritesManager.dart';
+//import '../../../core/funcations/FavoritesManager.dart';
 import '../../../core/utils/colors.dart';
-import '../../home/models/product_model.dart';
+import '../../models/procucts.dart';
+import '../../models/product_model.dart';
+import '../cubit/FavoriteCubit.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  final ProductModel product;
+  final Products product;
   const ProductDetailsScreen({super.key, required this.product});
 
   @override
@@ -14,7 +17,7 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   int quantity = 1;
-  bool isFavorite = false;
+  //bool isFavorite = false;
 
   void increase() => setState(() => quantity++);
   void decrease() => setState(() => quantity = quantity > 1 ? quantity - 1 : 1);
@@ -30,25 +33,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(), // ✅ Back button
+          onPressed: () => Navigator.of(context).pop(), // Back button
         ),
         centerTitle: true,
         actions: [
-          IconButton(
-            icon: Icon(
-              isFavorite ? Icons.favorite : Icons.favorite_border,
-              color: Colors.red,
-            ),
-            onPressed: () {
-              setState(() {
-                isFavorite = !isFavorite;
-              });
+          BlocBuilder<FavoriteCubit, List<Products>>(
+            builder: (context, favorites) {
 
-              if (isFavorite) {
-                FavoritesManager.add(product);
-              } else {
-                FavoritesManager.remove(product);
-              }
+              final isFavorite = favorites.contains(product);
+
+              return IconButton(
+                icon: Icon(
+                  isFavorite
+                      ? Icons.favorite
+                      : Icons.favorite_border,
+                  color: Colors.red,
+                ),
+
+                onPressed: () {
+                  context.read<FavoriteCubit>().toggle(product);
+                },
+              );
             },
           ),
         ],
@@ -61,7 +66,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             height: 250,
             color: const Color(0xFFF5F5F5),
             child: Center(
-              child: Image.asset(product.image, height: 150, fit: BoxFit.contain),
+              child: Image.network(product.image, height: 150, fit: BoxFit.contain),
             ),
           ),
 
@@ -72,9 +77,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(product.name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
-                  const SizedBox(height: 4),
-                  Text(product.size, style: const TextStyle(fontSize: 14, color: AppColors.greyColor)),
+                  Text(product.title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                  // const SizedBox(height: 4),
+                  // Text(product.size, style: const TextStyle(fontSize: 14, color: AppColors.greyColor)),
 
                   const SizedBox(height: 30),
                   Row(
@@ -139,7 +144,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                         // Optional: Feedback
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("$quantity x ${product.name} added to cart"),
+                            content: Text("$quantity x ${product.title} added to cart"),
                             duration: const Duration(seconds: 1),
                           ),
                         );
